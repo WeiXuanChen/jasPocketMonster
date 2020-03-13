@@ -10,7 +10,7 @@
  * File Created: 2020-02-12 02:54:56 pm
  * Author: JamieWX Chen (JamieWX_Chen@compal.com)
  *
- * Last Modified: 2020-02-12 05:19:02 pm
+ * Last Modified: 2020-03-12 10:37:30 am
  * Modified By: JamieWX Chen (JamieWX_Chen@compal.com)
  */
 
@@ -19,7 +19,7 @@ import React, { Component } from 'react';
 class Header extends Component {
   render() {
     return (
-      <div>I am Header</div>
+      <div>JAS Pocket Monster</div>
     );
   }
 }

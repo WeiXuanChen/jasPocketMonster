@@ -1,4 +1,3 @@
-
 const express = require('express');
 
 const app = express(); // 建立一個Express伺服器
@@ -7,51 +6,16 @@ const path = require('path');
 const staticPath = path.join(__dirname, '/dist');
 app.use(express.static(staticPath));
 
+app.get('*', function (request, response){
+  response.sendFile(path.resolve(__dirname, 'dist', 'index.html'))
+  // todo: BE api:express.Router()
+  // todo: error handle
+  // if(request.url.indexOf('/api') === -1)
+})
+
 app.listen(3102, () => {
   console.log('App is running on port 3102!');
 });
-
-app.use('/test', (req, res) => {
-  // todo: refresh page will fail
-  console.log('[test]');
-  res.send(() => (
-    `<!DOCTYPE html>
-    <html>
-      <head>
-        <meta charset="UTF-8">
-        <title>JAS Pocket Monster</title>
-      </head>
-      <body>
-        <div id="root">123333</div>
-        <script src="/bundle.js"> </script>
-      </body>
-    </html>`
-  ));
-});
-
-app.get('/*', (req, res) => {
-  // todo: refresh page will fail
-  console.log('[/******]');
-  res.send(() => (
-    `<!DOCTYPE html>
-    <html>
-      <head>
-        <meta charset="UTF-8">
-        <title>JAS Pocket Monster</title>
-      </head>
-      <body>
-        <div id="root"></div>
-        <script src="/bundle.js"> </script>
-      </body>
-    </html>`
-  ));
-});
-
-// todo: BE api route
-// const router = express.Router();
-// router.get('/about', (req, res) => {
-//   res.send('home page!');
-// });
 
 // ------------------------------------------------------------------
 const mongoose = require('mongoose');

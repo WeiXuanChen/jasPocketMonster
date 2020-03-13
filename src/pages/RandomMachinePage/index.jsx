@@ -9,7 +9,7 @@
  * File Created: 2020-02-12 03:29:20 pm
  * Author: JamieWX Chen (JamieWX_Chen@compal.com)
  *
- * Last Modified: 2020-02-12 03:49:07 pm
+ * Last Modified: 2020-03-12 02:19:43 pm
  * Modified By: JamieWX Chen (JamieWX_Chen@compal.com)
  */
 
@@ -21,6 +21,10 @@ class index extends Component {
     return (
       <div>
         RandomMachinePage
+        <div className="randomMachine__coneArea">
+          <div className="randomMachine__cone"></div>
+          <div className="randomMachine__center"></div>
+        </div>
       </div>
     );
   }
