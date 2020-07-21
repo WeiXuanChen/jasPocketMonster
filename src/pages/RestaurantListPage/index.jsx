@@ -14,11 +14,30 @@
  * Modified By: JamieWX Chen (JamieWX_Chen@compal.com)
  */
 
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { ReactTinyLink } from 'react-tiny-link';
-import { useGetRestList } from '../../actions/restaurant';
+import { Input, Button } from '@material-ui/core';
+// import { useGetRestList } from '../../actions/restaurant';
+
+const SearchArea = styled.div`
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-gap: 20px;
+`;
+
+const StyledInput = styled(Input)`
+  height: 4vh;
+  font-size: 2vh !important;
+  border: 1px solid gray;
+  padding: 6px 20px 7px;
+`;
+
+const StyledButton = styled(Button)`
+  height: 4vh;
+  font-size: 1.5vh !important;
+`;
 
 const Container = styled.div`
   display: grid;
@@ -45,21 +64,51 @@ const Container = styled.div`
 `;
 
 const list = [
-  'https://www.gogoro.com/',
-  'https://www.gogoro.com/tw/smartscooter/s-performance/s1/',
-  'https://www.gogoro.com/tw/smartscooter/s-performance/s2/',
-  'https://www.gogoro.com/tw/smartscooter/viva/',
+  // 'https://www.gogoro.com/',
+  // 'https://www.gogoro.com/tw/smartscooter/s-performance/s1/',
+  // 'https://www.gogoro.com/tw/smartscooter/s-performance/s2/',
+  // 'https://www.gogoro.com/tw/smartscooter/viva/',
 ];
 
 const RestaurantListPage = () => {
-  const [status, result, api] = useGetRestList();
-  console.log('[status]: ', status);
-  console.log('[result]: ', result);
-  useEffect(() => {
-    api();
-  });
+  // const [status, result, api] = useGetRestList();
+  const [tempUrl, setTempUrl] = useState('');
+  const [tempCard, setTempCard] = useState(null);
+  // useEffect(() => {
+  //   api();
+  // });
   return (
     <Container>
+      <SearchArea>
+        <StyledInput
+          value={tempUrl}
+          onChange={(e) => {
+            console.log(e.target.value);
+            setTempUrl(e.target.value);
+          }}
+        />
+        <StyledButton
+          variant="contained"
+          color="primary"
+          onClick={() => {
+            console.log(tempUrl);
+            setTempCard(() => (
+              <ReactTinyLink
+                cardSize="large"
+                showGraphic
+                maxLine={2}
+                minLine={1}
+                width="500"
+                url={tempUrl}
+                key={tempUrl}
+              />
+            ));
+            setTempUrl('');
+          }}
+        >
+          Add
+        </StyledButton>
+      </SearchArea>
       {list.map((item) => {
         return (
           <ReactTinyLink
@@ -69,9 +118,11 @@ const RestaurantListPage = () => {
             minLine={1}
             width="500"
             url={item}
+            key={item}
           />
         );
       })}
+      {tempCard}
     </Container>
   );
 };
