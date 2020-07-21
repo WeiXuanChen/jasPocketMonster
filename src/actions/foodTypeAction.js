@@ -1,2 +1,4 @@
 export const GET_FOODTYPE_LIST = 'GET_FOODTYPE_LIST';
 export const GET_FOODTYPE_LIST_SUCCESS = 'GET_FOODTYPE_LIST_SUCCESS';
+
+export default null;

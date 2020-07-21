@@ -1,6 +1,10 @@
 import { createBrowserHistory } from 'history';
 import { createStore, applyMiddleware, combineReducers } from 'redux';
-import { routerMiddleware, syncHistoryWithStore, routerReducer } from 'react-router-redux';
+import {
+  routerMiddleware,
+  syncHistoryWithStore,
+  routerReducer,
+} from 'react-router-redux';
 import createSagaMiddleware, { END } from 'redux-saga';
 
 import foodTypeReducer from './reducers/foodTypeReducer';
@@ -13,10 +17,7 @@ const reducer = combineReducers({
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(
   reducer,
-  applyMiddleware(
-    routerMiddleware(createBrowserHistory()),
-    sagaMiddleware,
-  ),
+  applyMiddleware(routerMiddleware(createBrowserHistory()), sagaMiddleware)
 );
 
 store.runSaga = sagaMiddleware.run;

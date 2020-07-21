@@ -13,21 +13,23 @@
  * Modified By: JamieWX Chen (JamieWX_Chen@compal.com)
  */
 
-import React, { Component } from 'react';
+import React from 'react';
+import RandomMachine from './components/RandomMachine';
 
 // RandomMachinePage
-class index extends Component {
-  render() {
-    return (
-      <div>
-        RandomMachinePage
-        <div className="randomMachine__coneArea">
-          <div className="randomMachine__cone"></div>
-          <div className="randomMachine__center"></div>
-        </div>
-      </div>
-    );
-  }
-}
+const RandomMachinePage = () => {
+  console.log('[RandomMachinePage]');
+  return (
+    <>
+      <div>RandomMachinePage</div>
+      <RandomMachine />
+    </>
+  );
+};
 
-export default index;
+/* <div className="randomMachine__coneArea">
+  <div className="randomMachine__cone"></div>
+  <div className="randomMachine__center"></div>
+</div> */
+
+export default RandomMachinePage;

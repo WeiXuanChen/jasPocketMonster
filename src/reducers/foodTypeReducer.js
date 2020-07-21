@@ -1,4 +1,3 @@
-
 import {
   // GET_FOODTYPE_LIST,
   GET_FOODTYPE_LIST_SUCCESS,

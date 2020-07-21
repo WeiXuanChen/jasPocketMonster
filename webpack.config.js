@@ -1,59 +1,50 @@
-const path = require('path');
+const path = require("path");
 
 module.exports = {
-  mode: 'development',
-  entry: './src/index.jsx',
-  devtool: 'inline-source-map',
+  mode: "development",
+  entry: "./src/index.jsx",
+  devtool: "inline-source-map",
   output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist'),
-    publicPath: '/',
+    filename: "bundle.js",
+    path: path.resolve(__dirname, "dist"),
+    publicPath: "/",
   },
   devServer: {
     historyApiFallback: true,
+    contentBase: "./dist",
+    hot: true,
+    port: 3103,
   },
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/,
         exclude: /(node_modules)/,
-        use: 'babel-loader',
+        use: "babel-loader",
       },
       {
         test: /\.s[ac]ss$/i,
-        use: [
-          'style-loader',
-          'css-loader',
-          'sass-loader',
-        ],
+        use: ["style-loader", "css-loader", "sass-loader"],
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
-        use: [
-          'file-loader',
-        ],
+        use: ["file-loader"],
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
-        use: [
-          'file-loader',
-        ],
+        use: ["file-loader"],
       },
       {
         test: /\.(csv|tsv)$/,
-        use: [
-          'csv-loader',
-        ],
+        use: ["csv-loader"],
       },
       {
         test: /\.xml$/,
-        use: [
-          'xml-loader',
-        ],
+        use: ["xml-loader"],
       },
     ],
   },
   resolve: {
-    extensions: ['*', '.js', '.jsx'],
+    extensions: ["*", ".js", ".jsx"],
   },
 };
