@@ -13,7 +13,8 @@ app.get("*", function (request, response) {
   // if(request.url.indexOf('/api') === -1)
 });
 
-app.listen(3102, () => {
+const port = process.env.PORT || 3102;
+app.listen(port, () => {
   console.log("App is running on port 3102!");
 });
 
