@@ -21,7 +21,6 @@ const RandomMachinePage = () => {
   console.log('[RandomMachinePage]');
   return (
     <>
-      <div>RandomMachinePage</div>
       <RandomMachine />
     </>
   );

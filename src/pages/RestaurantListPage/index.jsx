@@ -14,12 +14,12 @@
  * Modified By: JamieWX Chen (JamieWX_Chen@compal.com)
  */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { ReactTinyLink } from 'react-tiny-link';
 import { Input, Button } from '@material-ui/core';
-// import { useGetRestList } from '../../actions/restaurant';
+import { useAddRestList } from '../../actions/restaurant';
 
 const SearchArea = styled.div`
   display: grid;
@@ -71,12 +71,13 @@ const list = [
 ];
 
 const RestaurantListPage = () => {
-  // const [status, result, api] = useGetRestList();
+  // eslint-disable-next-line no-unused-vars
+  const [status, result, api] = useAddRestList();
   const [tempUrl, setTempUrl] = useState('');
   const [tempCard, setTempCard] = useState(null);
-  // useEffect(() => {
-  //   api();
-  // });
+  useEffect(() => {
+    api();
+  });
   return (
     <Container>
       <SearchArea>
