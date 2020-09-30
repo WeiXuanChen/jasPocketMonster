@@ -1,4 +1,3 @@
-/* eslint-disable react/prefer-stateless-function */
 /*
  * (C) Copyright 2020 Compal Electronics, Inc.
  *
@@ -7,18 +6,22 @@
  *
  * File: index.js
  * Project: jaspocketmonster
- * File Created: 2020-02-12 03:47:54 pm
+ * File Created: 2020-02-12 03:29:20 pm
  * Author: JamieWX Chen (JamieWX_Chen@compal.com)
  *
- * Last Modified: 2020-02-12 05:19:23 pm
+ * Last Modified: 2020-03-12 02:19:43 pm
  * Modified By: JamieWX Chen (JamieWX_Chen@compal.com)
  */
 
 import React from 'react';
+import RestaurantListPage from './RestaurantListPage';
 
-// ViewpointListPage
-const ViewpointListPage = () => {
-  return <div>ViewpointListPage</div>;
+const RestaurantList = () => {
+  return (
+    <>
+      <RestaurantListPage />
+    </>
+  );
 };
 
-export default ViewpointListPage;
+export default RestaurantList;

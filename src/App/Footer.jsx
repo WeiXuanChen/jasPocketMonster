@@ -29,12 +29,12 @@ const useStyles = makeStyles({
     width: '100%',
     bottom: '0px',
     justifyContent: 'space-evenly',
-    backgroundColor: '#6df5af',
-    height: '7vh',
+    backgroundColor: '#fcf3b5',
+    height: '6vh',
   },
   iconStyle: {
-    fontSize: '5vh',
-    color: '#ffa600',
+    fontSize: '4vh',
+    color: '#fca3b5',
   },
 });
 

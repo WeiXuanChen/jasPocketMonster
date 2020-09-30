@@ -1,17 +1,17 @@
+import useAPI from '../utils/useAPI';
+
 export const useGetRestList = () => {
-  console.log('[useGetRestList]');
-  const api = () => {
-    return ['c', 'd'];
-  };
-  return ['a', 'b', api];
+  return useAPI({
+    method: 'POST',
+    url: 'http://localhost:3102/api/shop/get',
+  });
 };
 
 export const useAddRestList = () => {
-  console.log('[useGetRestList]');
-  const api = () => {
-    return ['c', 'd'];
-  };
-  return ['a', 'b', api];
+  return useAPI({
+    method: 'POST',
+    url: 'http://localhost:3102/api/shop/create',
+  });
 };
 
 export default null;

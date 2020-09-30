@@ -1,25 +1,10 @@
 /* eslint-disable react/prefer-stateless-function */
-/*
- * (C) Copyright 2020 Compal Electronics, Inc.
- *
- * This software is the property of Compal Electronics, Inc.
- * You have to accept the terms in the license file before use.
- *
- * File: index.js
- * Project: jaspocketmonster
- * File Created: 2020-02-12 03:47:54 pm
- * Author: JamieWX Chen (JamieWX_Chen@compal.com)
- *
- * Last Modified: 2020-02-19 11:34:46 am
- * Modified By: JamieWX Chen (JamieWX_Chen@compal.com)
- */
 
 import React, { useState, useEffect } from 'react';
-import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { ReactTinyLink } from 'react-tiny-link';
 import { Input, Button } from '@material-ui/core';
-import { useAddRestList } from '../../actions/restaurant';
+import { useAddRestList, useGetRestList } from '../../actions/restaurant';
 
 const SearchArea = styled.div`
   display: grid;
@@ -63,21 +48,26 @@ const Container = styled.div`
   }
 `;
 
-const list = [
-  // 'https://www.gogoro.com/',
-  // 'https://www.gogoro.com/tw/smartscooter/s-performance/s1/',
-  // 'https://www.gogoro.com/tw/smartscooter/s-performance/s2/',
-  // 'https://www.gogoro.com/tw/smartscooter/viva/',
-];
-
 const RestaurantListPage = () => {
-  // eslint-disable-next-line no-unused-vars
-  const [status, result, api] = useAddRestList();
+  const [addStatus, , addRest] = useAddRestList();
+  const [, getResult, getRestList] = useGetRestList();
   const [tempUrl, setTempUrl] = useState('');
-  const [tempCard, setTempCard] = useState(null);
+
   useEffect(() => {
-    api();
-  });
+    getRestList();
+  }, []);
+
+  useEffect(() => {
+    if (addStatus.isSuccess) getRestList();
+  }, [addStatus.isSuccess]);
+
+  const handleAddRest = () => {
+    if (tempUrl.substring(0, 4) === 'http' && tempUrl.indexOf('://' !== -1)) {
+      addRest({ shopName: tempUrl });
+    }
+    setTempUrl('');
+  };
+
   return (
     <Container>
       <SearchArea>
@@ -91,45 +81,35 @@ const RestaurantListPage = () => {
         <StyledButton
           variant="contained"
           color="primary"
+          style={{
+            backgroundColor: '#b1d1ed',
+          }}
           onClick={() => {
-            console.log(tempUrl);
-            setTempCard(() => (
+            handleAddRest();
+          }}
+        >
+          Add
+        </StyledButton>
+      </SearchArea>
+      {getResult
+        ? getResult.map((item) => {
+            return (
               <ReactTinyLink
                 cardSize="large"
                 showGraphic
                 maxLine={2}
                 minLine={1}
                 width="500"
-                url={tempUrl}
-                key={tempUrl}
+                url={item.shopName || ''}
+                // eslint-disable-next-line no-underscore-dangle
+                key={item._id}
               />
-            ));
-            setTempUrl('');
-          }}
-        >
-          Add
-        </StyledButton>
-      </SearchArea>
-      {list.map((item) => {
-        return (
-          <ReactTinyLink
-            cardSize="large"
-            showGraphic
-            maxLine={2}
-            minLine={1}
-            width="500"
-            url={item}
-            key={item}
-          />
-        );
-      })}
-      {tempCard}
+            );
+          })
+        : null}
+      {/* {tempCard} */}
     </Container>
   );
 };
 
-const mapStateToProps = (state) => ({
-  name: state.name,
-});
-
-export default connect(mapStateToProps)(RestaurantListPage);
+export default RestaurantListPage;

@@ -1,5 +1,15 @@
 const path = require("path");
 
+const {
+  HOST = "localhost",
+  HTTP_PORT: SERVER_PORT = 3102,
+  DEV_SERVER_PORT = 3103,
+} = process.env;
+const PROXY = {
+  SERVER: `http://${HOST}:${SERVER_PORT}`,
+  DEV_SERVER: `http://${HOST}:${DEV_SERVER_PORT}`,
+};
+
 module.exports = {
   mode: "development",
   entry: "./src/index.jsx",
@@ -14,6 +24,18 @@ module.exports = {
     contentBase: "./dist",
     hot: true,
     port: 3103,
+    proxy: {
+      "/api": {
+        target: {
+          host: "localhost",
+          protocol: "http:",
+          port: PROXY.SERVER,
+        },
+        pathRewrite: {
+          "^/api": "",
+        },
+      },
+    },
   },
   module: {
     rules: [

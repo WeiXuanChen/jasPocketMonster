@@ -14,25 +14,31 @@
  * Modified By: JamieWX Chen (JamieWX_Chen@compal.com)
  */
 
-import React, { Component } from 'react';
+import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import RestaurantList from '../pages/RestaurantListPage';
+import RestaurantList from '../pages/RestaurantList';
 import RandomMachine from '../pages/RandomMachinePage';
 import ViewpointList from '../pages/ViewpointListPage';
 
-class Content extends Component {
-  render() {
-    return (
-      <div>
-        <Switch>
-          <Route path="/restaurantList"><RestaurantList /></Route>
-          <Route path="/randomMachine"><RandomMachine /></Route>
-          <Route path="/viewpointList"><ViewpointList /></Route>
-          <Route path="/"><div /></Route>
-        </Switch>
-      </div>
-    );
-  }
-}
+const Content = () => {
+  return (
+    <div>
+      <Switch>
+        <Route path="/restaurantList">
+          <RestaurantList />
+        </Route>
+        <Route path="/randomMachine">
+          <RandomMachine />
+        </Route>
+        <Route path="/viewpointList">
+          <ViewpointList />
+        </Route>
+        <Route path="/">
+          <div />
+        </Route>
+      </Switch>
+    </div>
+  );
+};
 
 export default Content;

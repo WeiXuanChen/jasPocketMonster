@@ -1,7 +1,7 @@
-const mongoose = require('mongoose');
+import mongoose from "mongoose";
 
 const schema = new mongoose.Schema({
-  name: 'string',
+  name: "string",
 });
 
-module.exports = mongoose.model('FoodType', schema);
+module.exports = mongoose.model("FoodType", schema);

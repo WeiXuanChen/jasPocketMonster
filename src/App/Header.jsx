@@ -40,7 +40,12 @@ const Header = () => {
   return (
     <AppBar
       position="static"
-      style={{ height: '100%', justifyContent: 'center' }}
+      style={{
+        height: '100%',
+        justifyContent: 'center',
+        color: '#fca3b5',
+        backgroundColor: '#fcf3b5',
+      }}
     >
       <Toolbar>
         <IconButton
