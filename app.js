@@ -25,13 +25,16 @@ app.get("*", (request, response) => {
 
 app.use("/api", routerAPI);
 
-const port = process.env.PORT || 3102;
+const port = 3102;
 app.listen(port, () => {
-  console.log("App is running on port 3102!");
+  console.log(`App is running on port ${port}!`);
 });
 
+const uri =
+  "mongodb+srv://jamieChen:w0921759921@firstcluster.chbdk.gcp.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+
 mongoose
-  .connect("mongodb://localhost:27017/jasPocketMonster", {
+  .connect(uri || "mongodb://localhost:27017/jasPocketMonster", {
     useUnifiedTopology: true,
     useNewUrlParser: true,
   })

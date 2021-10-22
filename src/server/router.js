@@ -1,10 +1,10 @@
 import express from 'express';
-import usersRouter from './routers/users';
-import shopRouter from './routers/shops';
+import eventRouter from './routers/events';
+import userRouter from './routers/users';
 
 const router = express.Router();
 
-router.use('/user', usersRouter);
-router.use('/shop', shopRouter);
+router.use('/event', eventRouter);
+router.use('/shop', userRouter);
 
 export default router;
