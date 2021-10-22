@@ -7,6 +7,7 @@ const EventListPage = () => {
   const eventList = getEventListMuta?.data?.data?.data;
   console.log('[eventList]: ', eventList);
 
+  // eslint-disable-next-line no-unused-vars
   const createEventMuta = useMutation(createEvent);
 
   useEffect(() => {
@@ -14,6 +15,7 @@ const EventListPage = () => {
       id: '000000',
       name: 'event1',
     });
+    // getEventListMuta.mutate();
   }, []);
 
   return <div>EventListPage</div>;

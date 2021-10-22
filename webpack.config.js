@@ -1,13 +1,14 @@
 const path = require("path");
 
-const {
-  HOST = "localhost",
-  HTTP_PORT: SERVER_PORT = 3102,
-  DEV_SERVER_PORT = 3103,
-} = process.env;
+// const {
+//   HOST = "localhost",
+//   HTTP_PORT: SERVER_PORT = 3102,
+//   DEV_SERVER_PORT = 3103,
+// } = process.env;
 const PROXY = {
-  SERVER: `http://${HOST}:${SERVER_PORT}`,
-  DEV_SERVER: `http://${HOST}:${DEV_SERVER_PORT}`,
+  SERVER: "3102",
+  // SERVER: `http://${HOST}:${SERVER_PORT}`,
+  // DEV_SERVER: `http://${HOST}:${DEV_SERVER_PORT}`,
 };
 
 module.exports = {
