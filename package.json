@@ -8,7 +8,7 @@
     "build": "webpack",
     "start:dev": "webpack-dev-server --open",
     "start": "nodemon app.js --exec babel-node app.js",
-    "heroku-postbuild": "webpack -p"
+    "heroku-postbuild": "webpack-dev-server --open"
   },
   "author": "",
   "license": "ISC",
