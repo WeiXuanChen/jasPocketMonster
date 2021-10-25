@@ -18,10 +18,10 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get("*", (request, response) => {
-  response.sendFile(path.resolve(__dirname, "dist", "index.html"));
-  // todo: error handle
-});
+// app.get("*", (request, response) => {
+//   response.sendFile(path.resolve(__dirname, "dist", "index.html"));
+//   // todo: error handle
+// });
 
 app.use("/api", routerAPI);
 

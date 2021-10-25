@@ -7,8 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
     "start:dev": "webpack-dev-server --open",
-    "start": "nodemon app.js --exec babel-node app.js",
-    "heroku-postbuild": "webpack-dev-server --open"
+    "start:server": "nodemon app.js --exec babel-node app.js",
+    "heroku-postbuild": "concurrently \"npm run start:dev\" \"npm run start:server\"",
+    "multiple": "concurrently \"npm run start:dev\" \"npm run start:server\""
   },
   "author": "",
   "license": "ISC",
@@ -57,6 +58,7 @@
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.1.0",
     "babel-polyfill": "^6.26.0",
+    "concurrently": "^6.3.0",
     "css-loader": "^3.4.2",
     "csv-loader": "^3.0.2",
     "eslint": "^5.16.0",

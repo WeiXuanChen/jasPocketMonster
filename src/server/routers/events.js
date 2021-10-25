@@ -22,7 +22,7 @@ router.post('/create', async (req, res) => {
   });
 });
 
-router.post('/get', async (req, res) => {
+router.get('/list', async (req, res) => {
   console.log('[/api/event/list]');
   const events = await EventModel.find({});
   console.log('[events]: ', events);
