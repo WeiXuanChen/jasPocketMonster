@@ -5,11 +5,10 @@
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack",
     "start:dev": "webpack-dev-server --open",
     "start:server": "nodemon app.js --exec babel-node app.js",
-    "heroku-postbuild": "concurrently \"npm run start:dev\" \"npm run start:server\"",
-    "multiple": "concurrently \"npm run start:dev\" \"npm run start:server\""
+    "heroku-postbuild": "webpack -p",
+    "start": "concurrently \"npm run start:dev\" \"npm run start:server\""
   },
   "author": "",
   "license": "ISC",
