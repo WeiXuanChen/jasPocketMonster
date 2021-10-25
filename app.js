@@ -25,7 +25,7 @@ app.use((req, res, next) => {
 
 app.use("/api", routerAPI);
 
-const port = 3102;
+const port = process.env.PORT || 3102;
 app.listen(port, () => {
   console.log(`App is running on port ${port}!`);
 });

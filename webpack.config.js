@@ -16,7 +16,7 @@ module.exports = {
     port: 3103,
     proxy: {
       "/api": {
-        target: "http://localhost:3102",
+        target: `http://localhost:${process.env.PORT || "3102"}`,
       },
     },
   },
