@@ -18,4 +18,19 @@ router.post('/create', async (req, res) => {
   });
 });
 
+router.post('/login', async (req, res) => {
+  console.log('[LOGIN]: ', req.body);
+  // const initUserModel = new UserModel(req.body);
+  // initUserModel.save((err) => {
+  //   if (err) {
+  //     return console.log('[ERROR]: ', err);
+  //   }
+  //   // saved!
+  //   return null;
+  // });
+  res.json({
+    isSuccess: true,
+  });
+});
+
 export default router;

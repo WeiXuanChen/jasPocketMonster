@@ -4,10 +4,9 @@ import styled from 'styled-components';
 import logo from '../assets/images/logo.png';
 
 const Container = styled.div`
-  position: fixed;
+  position: absolute;
   width: 100%;
   bottom: 0px;
-  background-color: #fff;
   height: 6vh;
   text-align: center;
 `;

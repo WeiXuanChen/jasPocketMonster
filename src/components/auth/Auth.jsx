@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Lock, User } from '@styled-icons/evil';
 
+import Button from '../../components/Button';
 import bgImage from '../../assets/images/bgImage.jpg';
 import logo from '../../assets/images/logo.png';
 
@@ -47,6 +48,7 @@ const Field = styled.div`
   position: relative;
   gap: 16px;
   width: 70%;
+  margin-bottom: 40px;
 `;
 
 const StyledInput = styled.input`
@@ -55,24 +57,10 @@ const StyledInput = styled.input`
   background-color: transparent;
   border: 0;
   border-bottom: 1px solid #000;
+  font-size: 3vh;
 `;
 
-const StyledButton = styled.button`
-  height: 4vh;
-  width: 40vw;
-  margin-top: 2vh;
-  font-size: 2.5vh;
-  border-radius: 30px;
-  font-family: system-ui;
-  background-color: #d1a11cdb;
-  z-index: 3;
-  border: 0px;
-  color: #eaefe9e8;
 
-  :hover {
-    background-color: #ad8518db;
-  }
-`;
 
 const Auth = ({ isOpen, handleClick }) => {
   return (
@@ -86,9 +74,9 @@ const Auth = ({ isOpen, handleClick }) => {
         </Field>
         <Field>
           <Lock size={100} color="#323237" />
-          <StyledInput />
+          <StyledInput type="password" />
         </Field>
-        <StyledButton onClick={() => handleClick()}>Sign In</StyledButton>
+        <Button onClick={() => handleClick()}>Sign In</Button>
       </Form>
     </Container>
   );

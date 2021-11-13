@@ -2,17 +2,21 @@
 
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import EventList from '../pages/EventListPage';
+import WishList from '../pages/WishListPage';
+import BuyList from '../pages/BuyListPage';
 
 const Content = () => {
   return (
     <div>
       <Switch>
-        <Route path="/eventList">
-          <EventList />
+        <Route path="/wishList">
+          <WishList />
+        </Route>
+        <Route path="/buyList">
+          <BuyList />
         </Route>
         <Route path="/">
-          <div />
+          <WishList />
         </Route>
       </Switch>
     </div>

@@ -5,6 +5,6 @@ import userRouter from './routers/users';
 const router = express.Router();
 
 router.use('/event', eventRouter);
-router.use('/shop', userRouter);
+router.use('/user', userRouter);
 
 export default router;
