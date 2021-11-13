@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import logo from '../assets/images/logo.png';
 
 const Container = styled.div`
-  position: absolute;
+  position: fixed;
   width: 100%;
   bottom: 0px;
   height: 6vh;

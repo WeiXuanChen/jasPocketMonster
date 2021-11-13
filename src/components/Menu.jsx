@@ -1,5 +1,5 @@
 /* eslint-disable react/prefer-stateless-function */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from "react-router-dom";
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
@@ -16,6 +16,7 @@ const Container = styled.div`
   display: ${props => props.isOpen ? 'flex' : 'none' };
   justify-content: center;
   align-items: center;
+  z-index: 10;
 `;
 
 const Modal = styled.div`
@@ -27,6 +28,11 @@ const Modal = styled.div`
   align-items: center;
   flex-direction: column;
   border-radius: 10px;
+`;
+
+const StyledText = styled.div`
+  font-size: 3vh;
+  line-height: 3vh;
 `;
 
 const StyledButton = styled(Button)`
@@ -42,6 +48,7 @@ const StyledButton = styled(Button)`
 `;
 
 const Menu = ({ isOpen, closeModal }) => {
+  const [userName, setUserName] = useState();
   const history = useHistory();
 
   const handleClick = (path) => {
@@ -49,9 +56,14 @@ const Menu = ({ isOpen, closeModal }) => {
     closeModal();
   }
 
+  useEffect(() => {
+    setUserName(window.sessionStorage.getItem('useName'));
+  }, [])
+
   return (
     <Container isOpen={isOpen}>
       <Modal>
+        <StyledText>{`Hi, ${userName} `}</StyledText>
         <StyledButton  onClick={() => handleClick("/wishList")}>Your Wish List</StyledButton>
         <StyledButton onClick={() => handleClick("/buyList")}>Buy List</StyledButton>
       </Modal>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Lock, User } from '@styled-icons/evil';
@@ -60,9 +60,16 @@ const StyledInput = styled.input`
   font-size: 3vh;
 `;
 
+const ErrorMessage = styled.div`
+  color: red;
+  font-size: 2vh;
+  line-height: 2vh;
+`;
 
+const Auth = ({ isOpen, handleClick, showError }) => {
+  const [account, setAccount] = useState();
+  const [password, setPassword] = useState();
 
-const Auth = ({ isOpen, handleClick }) => {
   return (
     <Container isOpen={isOpen}>
       <StyledImg src={bgImage} alt="bgImage" />
@@ -70,13 +77,17 @@ const Auth = ({ isOpen, handleClick }) => {
         <StyledLogo src={logo} alt="Logo" />
         <Field>
           <User size={100} color="#323237" />
-          <StyledInput />
+          <StyledInput value={account} onChange={(e) => setAccount(e.target.value)} />
         </Field>
         <Field>
           <Lock size={100} color="#323237" />
-          <StyledInput type="password" />
+          <StyledInput type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
         </Field>
-        <Button onClick={() => handleClick()}>Sign In</Button>
+        { showError && <ErrorMessage>Wrong Account or Password</ErrorMessage>}
+        <Button onClick={() => handleClick({
+          account,
+          password,
+        })}>Sign In</Button>
       </Form>
     </Container>
   );
@@ -85,10 +96,12 @@ const Auth = ({ isOpen, handleClick }) => {
 Auth.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   handleClick: PropTypes.func,
+  showError: PropTypes.bool,
 };
 
 Auth.defaultProps = {
   handleClick: () => {},
+  showError: false,
 };
 
 export default Auth;

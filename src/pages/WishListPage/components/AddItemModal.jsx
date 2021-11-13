@@ -15,6 +15,7 @@ const Container = styled.div`
   display: ${props => props.isOpen ? 'flex' : 'none' };
   justify-content: center;
   align-items: center;
+  z-index: 10;
 `;
 
 const Modal = styled.div`

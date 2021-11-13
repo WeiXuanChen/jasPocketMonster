@@ -15,7 +15,7 @@ const Content = () => {
         <Route path="/buyList">
           <BuyList />
         </Route>
-        <Route path="/">
+        <Route path="">
           <WishList />
         </Route>
       </Switch>

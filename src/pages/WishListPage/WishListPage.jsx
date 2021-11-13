@@ -18,10 +18,11 @@ const StyledButton = styled.div`
   cursor: pointer;
   width: 100%;
   text-align: center;
+  height: 10vh;
 `;
 
 
-const EventListPage = () => {
+const WishListPage = () => {
   const [showAddModal, setOpenAddModal] = useState(false);
   const [itemList, setItemList] = useState([]);
 
@@ -66,4 +67,4 @@ const EventListPage = () => {
   );
 };
 
-export default EventListPage;
+export default WishListPage;
