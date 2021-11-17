@@ -2,7 +2,7 @@ import requestAgent from './requestAgent';
 
 const { request } = requestAgent;
 
-const createUser = (data) => {
+const createUser = (data) => 
   request({
     method: 'POST',
     endpoint: '/api/user/create',
@@ -10,18 +10,16 @@ const createUser = (data) => {
     json: true,
     data,
   });
-}
 
-const getUserList = () => {
+const getUserList = () => 
   request({
     method: 'POST',
     endpoint: '/api/user/list',
     params: {},
     json: true,
   });
-}
 
-const deleteUser = (data) => {  
+const deleteUser = (data) =>  
   request({
     method: 'POST',
     endpoint: '/api/user/delete',
@@ -29,8 +27,24 @@ const deleteUser = (data) => {
     json: true,
     data,
   });
-}
-  
+
+const updateUser = (data) => 
+  request({
+    method: 'POST',
+    endpoint: '/api/user/update',
+    params: {},
+    json: true,
+    data,
+  });
+
+const getWishList = (data) => 
+  request({
+    method: 'POST',
+    endpoint: '/api/user/wishList',
+    params: {},
+    json: true,
+    data,
+  });
 
 const login = (data) =>
   request({
@@ -41,4 +55,4 @@ const login = (data) =>
     data,
   });
 
-export { login, createUser, deleteUser, getUserList };
+export { login, createUser, deleteUser, updateUser, getUserList, getWishList };

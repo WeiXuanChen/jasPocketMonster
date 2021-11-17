@@ -10,8 +10,8 @@ const MainLayout = () => {
   const [openAuthModal, setShowAuthModal] = useState(true);
   const [showLoginError, setShowLoginError] = useState(false);
   
-  // const getUserListMuta = useMutation(getUserList);
-  // const userList = getUserListMuta.data;
+  const getUserListMuta = useMutation(getUserList);
+  const userList = getUserListMuta.data;
 
   // const createUserMuta = useMutation(createUser);
   // const createUserResult = createUserMuta?.data?.data?.data;
@@ -38,7 +38,7 @@ const MainLayout = () => {
   useEffect(() => {
     if(loginResult && !loginMuta.isLoading) {
       if(loginResult?.login === 'success') {
-        window.sessionStorage.setItem('useName', loginResult?.useName);
+        window.sessionStorage.setItem('userName', loginResult?.userName);
         setShowAuthModal(false);
       } else {
         setShowLoginError(true);
@@ -55,7 +55,7 @@ const MainLayout = () => {
         <Footer />
       </div>
       {
-        !window.sessionStorage.getItem('useName') && (
+        !window.sessionStorage.getItem('userName') && (
           <Auth
             isOpen={openAuthModal}
             handleClick={(data) => loginMuta.mutate(data)}

@@ -44,6 +44,41 @@ router.post('/delete', async (req, res) => {
   }
 });
 
+router.post('/update', async (req, res) => {
+  console.log('[update USERS]');
+  const result = await UserModel.findOneAndUpdate(
+    { userName: req.body.userName },
+    req.body,
+  );
+
+  try {
+    res.json({
+      isSuccess: true,
+    });
+  } catch (err) {
+    res.json({
+      isSuccess: false,
+    });
+  }
+});
+
+router.post('/wishList', async (req, res) => {
+  const result = await UserModel.find(req.body);
+  console.log('[GET WISHLIST]: ', result);
+
+  try {
+    if(result && result.length > 0) {
+      res.json({
+        data: result[0].wishList,
+      });
+    }
+  } catch (err) {
+    res.json({
+      isSuccess: false,
+    });
+  }
+});
+
 router.post('/login', async (req, res) => {
   const result = await UserModel.find({userName: req.body.account});
 
@@ -51,12 +86,9 @@ router.post('/login', async (req, res) => {
     if(result && result.length > 0 && result[0].userPassword === req.body.password) {
       res.json({
         login: 'success',
-        useName: req.body.account,
+        userName: req.body.account,
       });
     }
-    res.json({
-      login: 'fail',
-    });
   } catch (err) {
     res.json({
       isSuccess: false,
