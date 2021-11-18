@@ -49,13 +49,14 @@ const MainLayout = () => {
 
   return (
     <>
-      <div style={{ overflow: 'hidden' }}>
-        <div>
-          <Content />
+      {window.sessionStorage.getItem('userName') ? (
+        <div style={{ overflow: 'hidden' }}>
+          <div>
+            <Content />
+          </div>
+          {/* <Footer /> */}
         </div>
-        {/* <Footer /> */}
-      </div>
-      {!window.sessionStorage.getItem('userName') && (
+      ) : (
         <Auth
           isOpen={openAuthModal}
           handleClick={(data) => loginMuta.mutate(data)}
