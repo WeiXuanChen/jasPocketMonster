@@ -23,6 +23,8 @@ const StyledButton = styled.div`
   height: 10vh;
 `;
 
+const colorList = ['#554A35', '#E10032', '#FFC363', '#1C4508'];
+
 const WishListPage = () => {
   const userName = window.sessionStorage.getItem('userName');
   const [showAddModal, setOpenAddModal] = useState(false);
@@ -67,7 +69,6 @@ const WishListPage = () => {
     }
   }, [getWishListMuta.isLoading]);
 
-  const colorList = ['#554A35', '#E10032', '#FFC363', '#1C4508'];
 
   return (
     <>

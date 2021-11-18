@@ -1,43 +1,45 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useMutation } from 'react-query';
-// import { getEventList } from '../../api/user';
+import { getBuyList } from '../../api/user';
 import Header from '../../components/Header';
 import ListItem from '../../components/ListItem';
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  padding: 1vh 5vw;
+  gap: 3vh;
+  padding: 3vh 5vw;
+  overflow: auto;
+  height: 87vh;
 `;
 
-const StyledButton = styled.div`
-  cursor: pointer;
-  width: 100%;
-  text-align: center;
-`;
-
+const colorList = ['#554A35', '#E10032', '#FFC363', '#1C4508'];
 
 const EventListPage = () => {
-  // const getEventListMuta = useMutation(getEventList);
-  // const eventList = getEventListMuta?.data?.data?.data;
-  // console.log('[eventList]: ', eventList);
+  const userName = window.sessionStorage.getItem('userName');
 
-  // useEffect(() => {
-  //   // getEventListMuta.mutate();
-  // }, []);
+  const getBuyListMuta = useMutation((payload) => {
+    const result = getBuyList(payload);
+    return result;
+  });
+  const buyList = getBuyListMuta?.data?.data?.data || [];
+  console.log('[buyList]: ', buyList);
 
-  const colorList = ['#554A35', '#E10032', '#FFC363', '#1C4508'];
-  const itemList = [];
+  useEffect(() => {
+    getBuyListMuta.mutate({ buyerName: userName });
+  }, []);
 
   return (
     <>
       <Header title="Buy List" />
       <Container>
         {
-          itemList.map((el, index) => (
-            <ListItem text={el} color={colorList[index % 4]} />
+          buyList.map((el, index) => (
+            <ListItem 
+              text={el} color={colorList[index % 4]} 
+              showDelete={false}
+            />
           ))
         }
       </Container>

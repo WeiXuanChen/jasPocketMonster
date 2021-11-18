@@ -4,7 +4,7 @@ const schema = new mongoose.Schema({
   userId: "string",
   userName: "string",
   userPassword: "string",
-  buyerId: "string",
+  buyerName: "string",
   wishList: [{
     type: String
   }],

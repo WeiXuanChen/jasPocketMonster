@@ -46,6 +46,15 @@ const getWishList = (data) =>
     data,
   });
 
+const getBuyList = (data) => 
+  request({
+    method: 'POST',
+    endpoint: '/api/user/buyList',
+    params: {},
+    json: true,
+    data,
+  });
+
 const login = (data) =>
   request({
     method: 'POST',
@@ -55,4 +64,4 @@ const login = (data) =>
     data,
   });
 
-export { login, createUser, deleteUser, updateUser, getUserList, getWishList };
+export { login, createUser, deleteUser, updateUser, getUserList, getWishList, getBuyList };

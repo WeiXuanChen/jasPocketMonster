@@ -51,9 +51,13 @@ router.post('/update', async (req, res) => {
   );
 
   try {
-    if (result && result.length > 0) {
+    if (result) {
       res.json({
         isSuccess: true,
+      });
+    } else {
+      res.json({
+        isSuccess: false,
       });
     }
   } catch (err) {
@@ -74,6 +78,39 @@ router.post('/wishList', async (req, res) => {
       });
     }
   } catch (err) {
+    res.json({
+      isSuccess: false,
+    });
+  }
+});
+
+router.post('/buyList', async (req, res) => {
+  const result = await UserModel.find(req.body);
+  console.log('[GET BuyList]');
+
+  let updateResult = {};
+  if(result.length === 0) {
+    const userList = await UserModel.find({});
+    const chooseOne = userList.find((el) => el.userName !== req.body.buyerName && (!el.buyerName || el.buyerName === null));
+    chooseOne.buyerName = req.body.buyerName;
+    updateResult = await UserModel.findOneAndUpdate(
+      { userName: chooseOne.userName },
+      chooseOne,
+    );
+  }
+
+  try {
+    if (result && result.length > 0) {
+      res.json({
+        data: result[0].wishList,
+      });
+    } else if (updateResult) {
+      res.json({
+        data: updateResult.wishList,
+      });
+    }
+  } catch (err) {
+    console.log('[err]: ', err);
     res.json({
       isSuccess: false,
     });
