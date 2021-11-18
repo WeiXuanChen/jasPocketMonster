@@ -48,7 +48,7 @@ const Field = styled.div`
   position: relative;
   gap: 16px;
   width: 70%;
-  margin-bottom: 40px;
+  margin-bottom: 3vh;
 `;
 
 const StyledInput = styled.input`
