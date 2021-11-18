@@ -11,7 +11,9 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 3vh;
-  padding: 1vh 5vw;
+  padding: 3vh 5vw;
+  overflow: auto;
+  height: 87vh;
 `;
 
 const StyledButton = styled.div`
@@ -20,7 +22,6 @@ const StyledButton = styled.div`
   text-align: center;
   height: 10vh;
 `;
-
 
 const WishListPage = () => {
   const userName = window.sessionStorage.getItem('userName');
@@ -34,7 +35,7 @@ const WishListPage = () => {
   const wishList = getWishListMuta?.data?.data?.data;
 
   const updateUserMuta = useMutation(updateUser);
-  const updateUserResult = updateUserMuta?.data?.data?.data;
+  // const updateUserResult = updateUserMuta?.data?.data?.data;
 
   const addItem = (item) => {
     setOpenAddModal(false);
@@ -45,7 +46,7 @@ const WishListPage = () => {
       userName,
       wishList: itemList,
     });
-  }
+  };
 
   const handleDeleteItem = (text) => {
     const newList = itemList.filter((el) => el !== text);
@@ -54,14 +55,14 @@ const WishListPage = () => {
       userName,
       wishList: newList,
     });
-  }
+  };
 
   useEffect(() => {
-    getWishListMuta.mutate({userName});
+    getWishListMuta.mutate({ userName });
   }, []);
 
   useEffect(() => {
-    if(wishList && !getWishListMuta.isLoading) {
+    if (wishList && !getWishListMuta.isLoading) {
       setItemList(wishList);
     }
   }, [getWishListMuta.isLoading]);
@@ -72,19 +73,29 @@ const WishListPage = () => {
     <>
       <Header title="Wish List" />
       <Container>
-        {
-          itemList.map((el, index) => (
-            <ListItem 
-              text={el} color={colorList[index % 4]}
-              deleteItem={(text) => handleDeleteItem(text)}
-            />
-          ))
-        }
+        {itemList.map((el, index) => (
+          <ListItem
+            text={el}
+            color={colorList[index % 4]}
+            deleteItem={(text) => handleDeleteItem(text)}
+          />
+        ))}
         <StyledButton>
-          <AddCircle size="100" color="#54627B" onClick={() => setOpenAddModal(true)}/>
+          <AddCircle
+            size="100"
+            color="#54627B"
+            onClick={() => {
+              console.log('[Click AddCircle]');
+              setOpenAddModal(true);
+            }}
+          />
         </StyledButton>
       </Container>
-      <AddItemModal isOpen={showAddModal} onSave={(e) => addItem(e)} onClose={() => setOpenAddModal(false)}/>
+      <AddItemModal
+        isOpen={showAddModal}
+        onSave={(e) => addItem(e)}
+        onClose={() => setOpenAddModal(false)}
+      />
     </>
   );
 };

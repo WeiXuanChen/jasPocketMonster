@@ -12,17 +12,19 @@ const Container = styled.div`
   display: grid;
   grid-template-columns: 1fr 6fr 1fr;
   align-items: center;
-  padding: 0 1vh;
+  padding: 1vh 1vh 0;
 
   > div {
     text-align: center;
     font-size: 3.5vh;
     line-height: 6vh;
+    color: #323237;
   }
 `;
 
 const StyledIcon = styled(Navicon)`
   cursor: pointer;
+  color: #323237;
 `;
 
 const Header = ({ title }) => {
@@ -30,11 +32,11 @@ const Header = ({ title }) => {
   return (
     <>
       <Container>
-        <StyledIcon size="4vh" onClick={() => setOpenModal(!isOpen)}/>
+        <StyledIcon size="4vh" onClick={() => setOpenModal(!isOpen)} />
         <div>{title}</div>
         <div />
       </Container>
-      <Menu isOpen={isOpen} closeModal={() => setOpenModal(false) }/>
+      <Menu isOpen={isOpen} closeModal={() => setOpenModal(false)} />
     </>
   );
 };

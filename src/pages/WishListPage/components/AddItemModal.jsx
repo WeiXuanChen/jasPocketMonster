@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { Gift } from '@styled-icons/fluentui-system-regular';
 
 import Button from '../../../components/Button';
 
@@ -12,7 +13,7 @@ const Container = styled.div`
   top: 0;
   left: 0;
   background-color: #0006;
-  display: ${props => props.isOpen ? 'flex' : 'none' };
+  display: ${(props) => (props.isOpen ? 'flex' : 'none')};
   justify-content: center;
   align-items: center;
   z-index: 10;
@@ -31,13 +32,16 @@ const Modal = styled.div`
 
 const StyledInput = styled.input`
   height: 6vh;
-  width: 100%;
+  width: 95%;
   font-size: 3vh;
 `;
 
 const StyledText = styled.div`
   width: 100%;
   font-size: 3vh;
+  line-height: 5vh;
+  display: flex;
+  align-items: center;
 `;
 
 const AddItemModal = ({ isOpen, onSave, onClose }) => {
@@ -46,20 +50,33 @@ const AddItemModal = ({ isOpen, onSave, onClose }) => {
   const handleClickSave = () => {
     setValue('');
     onSave(value);
-  }
+  };
 
   const handleClickCancel = () => {
     setValue('');
     onClose();
-  }
+  };
 
   return (
     <Container isOpen={isOpen}>
       <Modal>
-        <StyledText>Item Name</StyledText>
+        <StyledText>
+          <Gift size="3vh" />
+          Item Name
+        </StyledText>
         <StyledInput value={value} onChange={(e) => setValue(e.target.value)} />
-        <Button style={{backgroundColor: '#2E8BC0', color: '#fff'}} onClick={() => handleClickSave()}>Save</Button>
-        <Button style={{backgroundColor: '#DF362D', color: '#fff'}} onClick={() => handleClickCancel()}>Cancel</Button>
+        <Button
+          style={{ backgroundColor: '#554A35', color: '#fff' }}
+          onClick={() => handleClickSave()}
+        >
+          Save
+        </Button>
+        <Button
+          style={{ backgroundColor: '#fff', color: '#000' }}
+          onClick={() => handleClickCancel()}
+        >
+          Cancel
+        </Button>
       </Modal>
     </Container>
   );

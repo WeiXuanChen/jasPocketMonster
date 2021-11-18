@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import { useMutation } from 'react-query';
 import { getUserList, createUser, deleteUser, login } from '../api/user';
@@ -9,7 +10,7 @@ import Auth from '../components/auth';
 const MainLayout = () => {
   const [openAuthModal, setShowAuthModal] = useState(true);
   const [showLoginError, setShowLoginError] = useState(false);
-  
+
   const getUserListMuta = useMutation(getUserList);
   const userList = getUserListMuta.data;
 
@@ -36,8 +37,8 @@ const MainLayout = () => {
   }, []);
 
   useEffect(() => {
-    if(loginResult && !loginMuta.isLoading) {
-      if(loginResult?.login === 'success') {
+    if (loginResult && !loginMuta.isLoading) {
+      if (loginResult?.login === 'success') {
         window.sessionStorage.setItem('userName', loginResult?.userName);
         setShowAuthModal(false);
       } else {
@@ -48,21 +49,19 @@ const MainLayout = () => {
 
   return (
     <>
-      <div style={{ overflow: 'hidden'}}>
+      <div style={{ overflow: 'hidden' }}>
         <div>
           <Content />
         </div>
-        <Footer />
+        {/* <Footer /> */}
       </div>
-      {
-        !window.sessionStorage.getItem('userName') && (
-          <Auth
-            isOpen={openAuthModal}
-            handleClick={(data) => loginMuta.mutate(data)}
-            showError={showLoginError}
-          />
-        )
-      }
+      {!window.sessionStorage.getItem('userName') && (
+        <Auth
+          isOpen={openAuthModal}
+          handleClick={(data) => loginMuta.mutate(data)}
+          showError={showLoginError}
+        />
+      )}
     </>
   );
 };

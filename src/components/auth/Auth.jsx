@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Lock, User } from '@styled-icons/evil';
 
-import Button from '../../components/Button';
+import Button from '../Button';
 import bgImage from '../../assets/images/bgImage.jpg';
 import logo from '../../assets/images/logo.png';
 
@@ -77,17 +77,30 @@ const Auth = ({ isOpen, handleClick, showError }) => {
         <StyledLogo src={logo} alt="Logo" />
         <Field>
           <User size={100} color="#323237" />
-          <StyledInput value={account} onChange={(e) => setAccount(e.target.value)} />
+          <StyledInput
+            value={account}
+            onChange={(e) => setAccount(e.target.value)}
+          />
         </Field>
         <Field>
           <Lock size={100} color="#323237" />
-          <StyledInput type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+          <StyledInput
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
         </Field>
-        { showError && <ErrorMessage>Wrong Account or Password</ErrorMessage>}
-        <Button onClick={() => handleClick({
-          account,
-          password,
-        })}>Sign In</Button>
+        {showError && <ErrorMessage>Wrong Account or Password</ErrorMessage>}
+        <Button
+          onClick={() =>
+            handleClick({
+              account,
+              password,
+            })
+          }
+        >
+          Sign In
+        </Button>
       </Form>
     </Container>
   );

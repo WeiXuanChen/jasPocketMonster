@@ -1,6 +1,6 @@
 /* eslint-disable react/prefer-stateless-function */
 import React, { useEffect, useState } from 'react';
-import { useHistory } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
@@ -13,14 +13,14 @@ const Container = styled.div`
   top: 0;
   left: 0;
   background-color: #0006;
-  display: ${props => props.isOpen ? 'flex' : 'none' };
+  display: ${(props) => (props.isOpen ? 'flex' : 'none')};
   justify-content: center;
   align-items: center;
   z-index: 10;
 `;
 
 const Modal = styled.div`
-  width: 50%;
+  width: 60%;
   height: fit-content;
   background: #fff;
   padding: 3vh 1vh 4vh 1vh;
@@ -54,18 +54,28 @@ const Menu = ({ isOpen, closeModal }) => {
   const handleClick = (path) => {
     history.push(path);
     closeModal();
-  }
+  };
 
   useEffect(() => {
-    setUserName(window.sessionStorage.getItem('useName'));
-  }, [])
+    setUserName(window.sessionStorage.getItem('userName'));
+  }, []);
 
   return (
     <Container isOpen={isOpen}>
       <Modal>
         <StyledText>{`Hi, ${userName} `}</StyledText>
-        <StyledButton  onClick={() => handleClick("/wishList")}>Your Wish List</StyledButton>
-        <StyledButton onClick={() => handleClick("/buyList")}>Buy List</StyledButton>
+        <StyledButton onClick={() => handleClick('/wishList')}>
+          Your Wish List
+        </StyledButton>
+        <StyledButton
+          style={{
+            backgroundColor: '#e5e5e5',
+            border: '0px',
+            color: '#d9d9d9',
+          }}
+        >
+          Buy List
+        </StyledButton>
       </Modal>
     </Container>
   );

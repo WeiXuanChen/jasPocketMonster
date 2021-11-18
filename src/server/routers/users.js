@@ -4,7 +4,7 @@ import UserModel from '../../../models/userModel';
 const router = express.Router();
 
 router.post('/create', async (req, res) => {
-  console.log('[CREATE USER ROUTER]: ', req.body);
+  console.log('[CREATE USER ROUTER]');
   const initUserModel = new UserModel(req.body);
   initUserModel.save((err) => {
     if (err) {
@@ -33,7 +33,6 @@ router.post('/list', async (req, res) => {
 router.post('/delete', async (req, res) => {
   console.log('[delete USERS]');
   const result = await UserModel.find(req.body).remove();
-  console.log('[result]: ', result);
 
   try {
     res.json(result);
@@ -48,13 +47,15 @@ router.post('/update', async (req, res) => {
   console.log('[update USERS]');
   const result = await UserModel.findOneAndUpdate(
     { userName: req.body.userName },
-    req.body,
+    req.body
   );
 
   try {
-    res.json({
-      isSuccess: true,
-    });
+    if (result && result.length > 0) {
+      res.json({
+        isSuccess: true,
+      });
+    }
   } catch (err) {
     res.json({
       isSuccess: false,
@@ -64,10 +65,10 @@ router.post('/update', async (req, res) => {
 
 router.post('/wishList', async (req, res) => {
   const result = await UserModel.find(req.body);
-  console.log('[GET WISHLIST]: ', result);
+  console.log('[GET WISHLIST]');
 
   try {
-    if(result && result.length > 0) {
+    if (result && result.length > 0) {
       res.json({
         data: result[0].wishList,
       });
@@ -80,10 +81,14 @@ router.post('/wishList', async (req, res) => {
 });
 
 router.post('/login', async (req, res) => {
-  const result = await UserModel.find({userName: req.body.account});
+  const result = await UserModel.find({ userName: req.body.account });
 
   try {
-    if(result && result.length > 0 && result[0].userPassword === req.body.password) {
+    if (
+      result &&
+      result.length > 0 &&
+      result[0].userPassword === req.body.password
+    ) {
       res.json({
         login: 'success',
         userName: req.body.account,
