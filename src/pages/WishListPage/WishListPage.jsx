@@ -78,10 +78,11 @@ const WishListPage = () => {
           <ListItem
             text={el}
             color={colorList[index % 4]}
-            deleteItem={(text) => handleDeleteItem(text)}
+            // deleteItem={(text) => handleDeleteItem(text)}
+            showDelete={false}
           />
         ))}
-        <StyledButton>
+        {/* <StyledButton>
           <AddCircle
             size="100"
             color="#54627B"
@@ -90,13 +91,13 @@ const WishListPage = () => {
               setOpenAddModal(true);
             }}
           />
-        </StyledButton>
+        </StyledButton> */}
       </Container>
-      <AddItemModal
+      {/* <AddItemModal
         isOpen={showAddModal}
         onSave={(e) => addItem(e)}
         onClose={() => setOpenAddModal(false)}
-      />
+      /> */}
     </>
   );
 };

@@ -67,13 +67,7 @@ const Menu = ({ isOpen, closeModal }) => {
         <StyledButton onClick={() => handleClick('/wishList')}>
           Your Wish List
         </StyledButton>
-        <StyledButton
-          style={{
-            backgroundColor: '#e5e5e5',
-            border: '0px',
-            color: '#d9d9d9',
-          }}
-        >
+        <StyledButton onClick={() => handleClick('/buyList')}>
           Buy List
         </StyledButton>
       </Modal>
