@@ -75,7 +75,7 @@
     "prettier-eslint": "^11.0.0",
     "sass-loader": "^8.0.2",
     "style-loader": "^1.1.2",
-    "webpack-cli": "^3.3.10",
+    "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0",
     "xml-loader": "^1.2.1"
   }
